@@ -1,9 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, preview ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, preview ]
   workflow_dispatch:
     inputs:
       browser:
@@ -11,8 +11,8 @@ on:
         description: Which browser to test
         required: true
         options:
-          - firefox
           - chromium
+          - firefox
           - webkit
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --project ${{ github.event.inputs.browser }}
+      run: npx playwright test --project ${{ github.event.inputs.browser || 'chromium' }}
     - uses: actions/upload-artifact@v4
       if: always()
       with:
