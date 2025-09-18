@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+.env
+
+# Playwright
+test-results/
+.playwright/
+/playwright-report/
+test-results/
+/blob-report/
+/playwright/.cache/
+
+# Misc
+.donotpush/
+*.sh
+*.log
